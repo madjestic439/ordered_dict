@@ -76,3 +76,29 @@ class SortableDict:
 		for k in lk :
 			rep[k] = self.vals[self.ks.index(k)]
 		return rep
+
+	def __iter__(self):
+		for k in self.ks :
+			yield k
+
+	def keys(self):
+		return self.__iter__()
+
+	def values(self):
+		for v in self.vals :
+			yield v
+
+	def items(self):
+		for k in self :
+			yield (k, self.vals[self.ks.index(k)])
+
+	def __add__(self, other):
+		rep = SortableDict()
+		for k, v in self.items() :
+			rep[k] = v
+		for ko, vo in other.items() :
+			rep[ko] = vo
+		return rep
+
+	def __iadd__(self, other):
+		return self + other
