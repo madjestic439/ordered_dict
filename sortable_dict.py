@@ -27,3 +27,28 @@ class SortableDict:
 			n += 1
 		present += '}'
 		return present
+
+	def __getitem__(self, kIndex):
+		if kIndex in self.ks :
+			return self.vals[self.ks.index(kIndex)]
+		else:
+			return ''
+
+	def __setitem__(self, kIndex, vValue):
+		if kIndex in self.ks :
+			self.vals[self.ks.index(kIndex)] = vValue
+		else:
+			self.ks.append(kIndex)
+			self.vals.append(vValue)
+
+	def __delitem__(self, kIndex):
+		if kIndex in self.ks :
+			index = self.ks.index(kIndex)
+			del(self.ks[index])
+			del(self.vals[index])
+
+	def __contains__(self, kIndex):
+		return kIndex in self.ks
+
+	def __len__(self):
+		return len(self.ks)
