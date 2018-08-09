@@ -52,3 +52,27 @@ class SortableDict:
 
 	def __len__(self):
 		return len(self.ks)
+
+	def toDict(self):
+		ln = len(self)
+		n = 0
+		rep = {}
+		while n < ln :
+			rep[self.ks] = self.vals
+		return rep
+
+	def sort(self):
+		lk = list(self.ks)
+		lk.sort()
+		rep = SortableDict()
+		for k in lk :
+			rep[k] = self.vals[self.ks.index(k)]
+		return rep
+
+	def reverse(self):
+		lk = list(self.ks)
+		lk.reverse()
+		rep = SortableDict()
+		for k in lk :
+			rep[k] = self.vals[self.ks.index(k)]
+		return rep
